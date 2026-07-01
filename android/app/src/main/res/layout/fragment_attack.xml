@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_wpa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WPA/WPA2 Handshake"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pmkid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PMKID Attack"
+            android:layout_marginTop="8dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_wps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WPS Pixie-Dust"
+            android:layout_marginTop="8dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_wep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WEP Replay"
+            android:layout_marginTop="8dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Evil Twin"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="8dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

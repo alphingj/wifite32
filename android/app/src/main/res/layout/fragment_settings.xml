@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ESP32 Settings"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Serial baud">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_baud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="921600"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_5ghz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Enable 5GHz"
+            android:checked="false"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

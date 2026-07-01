@@ -1,0 +1,3 @@
+-keep class com.wifite32.android.models.** { *; }
+-keep class com.wifite32.android.utils.** { *; }
+-keep class com.wifite32.android.services.** { *; }
