@@ -66,6 +66,31 @@ cd android
 # APK: app/build/outputs/apk/debug/app-debug.apk
 ```
 
+### Termux (Rooted Phone)
+Run the host controller directly from Termux without needing the Android APK:
+
+```bash
+pkg install python git
+pip install pyserial
+
+# Clone and run
+git clone https://github.com/alphingj/wifite32.git
+cd wifite32/host
+python3 pywifite32.py
+```
+
+Enable USB serial support with root:
+```bash
+# Give Termux permission to access USB device
+su
+chmod 666 /dev/ttyUSB0
+```
+
+For wireless cracking after capture, install aircrack-ng:
+```bash
+pkg install aircrack-ng
+```
+
 ## Protocol
 
 ### Serial Protocol
