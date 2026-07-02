@@ -149,6 +149,42 @@ The ESP32 watchdog timer is disabled via:
 - `CONFIG_BOOTLOADER_WDT_ENABLE=n` in sdkconfig.defaults
 - Runtime disable in `main.c` using `wdt_hal_disable()`
 
+## Termux All-in-One Installer
+
+One-command installation for rooted Android devices:
+
+```bash
+# Download and run installer
+pkg install wget
+wget https://raw.githubusercontent.com/alphingj/wifite32/main/termux-install.sh
+chmod +x termux-install.sh
+./termux-install.sh
+```
+
+**What it does:**
+- Detects architecture (aarch64/arm64, arm, i686, x86_64)
+- Installs Python, pyserial, git via pkg
+- Installs aircrack-ng (via custom build for aarch64/arm)
+- Clones wifite32 repository
+- Fixes USB serial permissions (`/dev/ttyUSB0`)
+- Creates run script: `~/wifite32-run.sh`
+- Creates Termux widget shortcut (if Termux:Widget installed)
+
+**After install:**
+```bash
+# Run directly
+~/wifite32-run.sh
+
+# Or from anywhere
+cd ~/wifite32/host && python3 pywifite32.py
+```
+
+**Manual USB permission (if needed):**
+```bash
+su -c 'chmod 666 /dev/ttyUSB0'
+setenforce 0  # Disable SELinux if blocking
+```
+
 ## License
 
 See LICENSE file.
