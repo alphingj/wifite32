@@ -69,29 +69,41 @@ cd android
 ### Termux (Rooted Phone)
 Run the host controller directly from Termux without needing the Android APK:
 
+**Step 1: Install Termux**
+- Download from [F-Droid](https://f-droid.org/packages/com.termux/) (recommended)
+- Alternatively use Google Play (may have older version)
+
+**Step 2: Install dependencies**
 ```bash
-# Install Termux (from F-Droid recommended)
 pkg update && pkg upgrade
-
-# Install dependencies
 pkg install python git pyserial
+pkg install aircrack-ng  # For cracking
+```
 
-# Clone and run
+**Step 3: Get source code**
+```bash
 git clone https://github.com/alphingj/wifite32.git
 cd wifite32/host
+```
+
+**Step 4: Configure USB access (root required)**
+```bash
+su
+chmod 666 /dev/ttyUSB0
+setenforce 0  # If SELinux blocks access
+```
+
+**Step 5: Run**
+```bash
 python3 pywifite32.py
 ```
 
-Enable USB serial support with root:
+**Alternative: SSH remote control**
+If ESP32 is connected to a desktop:
 ```bash
-# Give Termux permission to access USB device
-su
-chmod 666 /dev/ttyUSB0
-```
-
-For wireless cracking after capture, install aircrack-ng:
-```bash
-pkg install aircrack-ng
+pkg install openssh
+ssh user@desktop-ip
+# Run host controller on desktop, control via SSH
 ```
 
 ## Protocol
