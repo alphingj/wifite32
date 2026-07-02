@@ -12,7 +12,7 @@ wifite32/
 │   ├── main/
 │   │   ├── main.c      # Entry point with WDT disable
 │   │   ├── wifi_radio.c  # WiFi init, promiscuous mode, channel control
-│   │   ├── transport.c   # UART serial transport (115200 baud)
+│   │   ├── transport.c   # UART serial transport (921600 baud)
 │   │   ├── commands.c    # Command parser for host control
 │   │   └── attack_handlers.c # Deauth/PMKID/WPS/WEP attack handlers
 │   └── components/
@@ -70,8 +70,11 @@ cd android
 Run the host controller directly from Termux without needing the Android APK:
 
 ```bash
-pkg install python git
-pip install pyserial
+# Install Termux (from F-Droid recommended)
+pkg update && pkg upgrade
+
+# Install dependencies
+pkg install python git pyserial
 
 # Clone and run
 git clone https://github.com/alphingj/wifite32.git
@@ -94,8 +97,9 @@ pkg install aircrack-ng
 ## Protocol
 
 ### Serial Protocol
-- Baud rate: 115200 (firmware) / 921600 (host)
+- Baud rate: 921600 (host), 921600 (firmware UART)
 - Frame format: `[timestamp(4)][rssi(1)][length(2)][frame(N bytes)]`
+- Total header: 7 bytes
 
 ### Commands
 | ID | Command | Description |

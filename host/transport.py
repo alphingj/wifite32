@@ -28,15 +28,15 @@ class ESP32Transport:
                     continue
                 buf += b
                 off = 0
-                while off + 11 <= len(buf):
-                    ts = struct.unpack_from("<Q", buf, off)[0]
-                    rssi = struct.unpack_from("<b", buf, off + 8)[0]
-                    fl = struct.unpack_from("<H", buf, off + 9)[0]
-                    if off + 11 + fl > len(buf):
+                while off + 7 <= len(buf):
+                    ts = struct.unpack_from("<I", buf, off)[0]
+                    rssi = struct.unpack_from("<b", buf, off + 4)[0]
+                    fl = struct.unpack_from("<H", buf, off + 5)[0]
+                    if off + 7 + fl > len(buf):
                         break
-                    pkt = buf[off + 11: off + 11 + fl]
+                    pkt = buf[off + 7: off + 7 + fl]
                     self._rx.put((ts, rssi, pkt))
-                    off += 11 + fl
+                    off += 7 + fl
                 buf = buf[off:]
             except Exception:
                 time.sleep(0.005)
@@ -73,15 +73,15 @@ class TCPESP32Transport:
                     continue
                 buf += b
                 off = 0
-                while off + 11 <= len(buf):
-                    ts = struct.unpack_from("<Q", buf, off)[0]
-                    rssi = struct.unpack_from("<b", buf, off + 8)[0]
-                    fl = struct.unpack_from("<H", buf, off + 9)[0]
-                    if off + 11 + fl > len(buf):
+                while off + 7 <= len(buf):
+                    ts = struct.unpack_from("<I", buf, off)[0]
+                    rssi = struct.unpack_from("<b", buf, off + 4)[0]
+                    fl = struct.unpack_from("<H", buf, off + 5)[0]
+                    if off + 7 + fl > len(buf):
                         break
-                    pkt = buf[off + 11: off + 11 + fl]
+                    pkt = buf[off + 7: off + 7 + fl]
                     self._rx.put((ts, rssi, pkt))
-                    off += 11 + fl
+                    off += 7 + fl
                 buf = buf[off:]
             except Exception:
                 time.sleep(0.005)

@@ -4,13 +4,13 @@ import java.nio.ByteOrder;
 public final class FrameProtocol {
     private FrameProtocol() {}
     public static FramePacket parse(byte[] data) {
-        if (data == null || data.length < 11) return null;
-        long ts = ByteBuffer.wrap(data, 0, 8).order(ByteOrder.LITTLE_ENDIAN).getLong();
-        int rssi = data[8] & 0xFF;
-        int len = ((data[10] & 0xFF) << 8) | (data[9] & 0xFF);
-        if (data.length < 11 + len) return null;
+        if (data == null || data.length < 7) return null;
+        long ts = ByteBuffer.wrap(data, 0, 4).order(ByteOrder.LITTLE_ENDIAN).getInt() & 0xFFFFFFFFL;
+        int rssi = data[4];
+        int len = ((data[6] & 0xFF) << 8) | (data[5] & 0xFF);
+        if (data.length < 7 + len) return null;
         byte[] frame = new byte[len];
-        System.arraycopy(data, 11, frame, 0, len);
+        System.arraycopy(data, 7, frame, 0, len);
         return new FramePacket(ts, rssi, len, frame);
     }
     public static byte[] cmd(byte id, String... args) {
